@@ -1,6 +1,6 @@
 {
-  "name": "Hello World!",
-  "description": "My first packaged app.",
+  "name": "PLE",
+  "description": "A PLE Chrome app.",
   "version": "0.1",
   "manifest_version": 2,
   "app": {
@@ -17,5 +17,5 @@
   },
   "permissions": [
     "storage"
-  ],
+  ]
 }

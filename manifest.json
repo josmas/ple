@@ -16,6 +16,8 @@
     "128": "img/calculator-128.png"
   },
   "permissions": [
-    "storage"
+    "storage",
+    "http://www.google.com/",
+    "https://p2pu.org/api/alpha/courses/?format=json"
   ]
 }

@@ -33,11 +33,19 @@ function MainCtrl($scope, $http) {
 
     chrome.storage.local.set({'p2pu': p2puCourses}, function() {
       var notification = webkitNotifications.createNotification(
-        '../img/calculator-16.png',
+        //TODO (Jose) This image does not work (even adding to the manifest)
+        '../img/calculator-16.png', 
         'Saved!',
         'Courses have been saved successfully' 
       );
       notification.show();
     });
   }
+}
+
+function MyCourses($scope) {
+  $scope.myCourses = [ 
+    {name: 'My First Course', short_description: 'A fake course for now' },
+    {name: 'My Second Course', short_description: 'Another fake course for now' }
+  ];
 }

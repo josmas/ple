@@ -19,6 +19,7 @@
     "storage",
     "http://www.google.com/",
     "https://p2pu.org/api/alpha/courses/?format=json",
-    "https://www.coursera.org/maestro/api/topic/list"
+    "https://www.coursera.org/maestro/api/topic/list",
+    "notifications"
   ]
 }

@@ -8,3 +8,9 @@ function MainCtrl($scope, $http) {
     $scope.coursera = response;
   });
 }
+
+function StorageCtrl($scope) {
+  $scope.saveCourses= function(courses){
+    console.log(courses);
+  }
+}

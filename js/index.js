@@ -1,18 +1,19 @@
 function MainCtrl($scope, $http) {
   $scope.p2pu = [];
+  $scope.myCourses = [];
+  chrome.storage.local.get('myCourses', function(myCoursesLocal) {
+    $scope.myCourses = myCoursesLocal;
+    $scope.$apply(function($scope) {}); //Force an update in model from async call
+  });
   if (navigator.onLine) { //Grab from the network if online
     $http.get('https://p2pu.org/api/alpha/courses/?format=json').success(function(response) {
       $scope.p2pu = angular.fromJson(response.objects);
-      console.log($scope.p2pu)
     });
   }
   else {
     //App is offline; look for info locally
     chrome.storage.local.get('p2pu', function(p2puLocal) {
       $scope.p2pu = angular.fromJson(p2puLocal.p2pu);
-      console.log('p2pu from local is: ', $scope.p2pu);
-      //telling Angular that a change in the model has happened from an async
-      //call
       $scope.$apply(function($scope) {}); 
     });
   }
@@ -41,11 +42,18 @@ function MainCtrl($scope, $http) {
       notification.show();
     });
   }
-}
 
-function MyCourses($scope) {
-  $scope.myCourses = [ 
-    {name: 'My First Course', short_description: 'A fake course for now' },
-    {name: 'My Second Course', short_description: 'Another fake course for now' }
-  ];
+  $scope.selectCourses = function() {
+    var newCourses = [];
+    angular.forEach($scope.p2pu, function(course) {
+      if (course.checkedCourse) newCourses.push(course);
+    });
+    chrome.storage.local.get('myCourses', function(myCoursesLocal) {
+      var allMyCourses = _.union(newCourses, myCoursesLocal);
+      chrome.storage.local.set({'myCourses': allMyCourses}, function() {
+        $scope.myCourses = allMyCourses;
+        $scope.$apply(function($scope) {});
+      });
+    });
+  };
 }

@@ -5,32 +5,36 @@
   	<link href="css/bootstrap.min.css" rel="stylesheet" type="text/css">
   	<link href="css/style.css" rel="stylesheet" type="text/css">
   	<script type="text/javascript" src="js/angular.min.js"></script>
+  	<script type="text/javascript" src="js/underscore.js"></script>
   	<script type="text/javascript" src="js/index.js"></script>
   </head>
   <body>
     <div class="page-header">
     	<h1>PLE</h1>
     </div>
-    <div class="mycourses" ng-controller="MyCourses">
-      <h3>My Courses</h3>
-        <table class="table-striped">
-    	<tr ng-repeat="course in myCourses">
-          <td class="name">
-                {{course.name}}
-          </td>
-          <td>
-                {{course.short_description}}
-            </td>
-    	</tr>
-      </table>
-    </div>
     <div ng-controller="MainCtrl">
+      <div class="mycourses">
+        <h3>My Courses</h3>
+          <table class="table-striped">
+          <tr ng-repeat="course in myCourses">
+            <td class="name">
+                  {{course.name}}
+            </td>
+            <td>
+                  {{course.short_description}}
+              </td>
+          </tr>
+        </table>
+      </div>
         <button ng-click="saveCourses()" class="btn-primary btn-mini pull-right">
           Save Search Locally
         </button>
         <h3>Courses from the Web</h3>
         <table class="table-striped">
     	<tr ng-repeat="course in p2pu">
+          <td>
+            <input type="checkbox" ng-model="course.checkedCourse">
+          </td>
           <td class="name">
                 {{course.name}}
           </td>
@@ -39,6 +43,9 @@
             </td>
     	</tr>
       </table>
+      <button ng-click="selectCourses()" class="btn-primary btn-mini pull-right">
+        Add to My Courses
+      </button>
     </div>
   </body>
 </html>

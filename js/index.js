@@ -4,6 +4,9 @@ function MainCtrl($scope, $http) {
   chrome.storage.local.get('myCourses', function(myCoursesLocal) {
     $scope.myCourses = myCoursesLocal;
     $scope.$apply(function($scope) {}); //Force an update in model from async call
+    console.log(myCoursesLocal);
+    console.log('AM I being called');
+    $scope.$digest();
   });
   if (navigator.onLine) { //Grab from the network if online
     $http.get('https://p2pu.org/api/alpha/courses/?format=json').success(function(response) {

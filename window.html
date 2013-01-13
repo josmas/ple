@@ -30,8 +30,9 @@
           Save Search Locally
         </button>
         <h3>Courses from the Web</h3>
+        Search: <input ng-model="searchText">
         <table class="table-striped">
-    	<tr ng-repeat="course in p2pu">
+    	<tr ng-repeat="course in p2pu | filter:searchText">
           <td>
             <input type="checkbox" ng-model="course.checkedCourse">
           </td>

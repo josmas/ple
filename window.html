@@ -7,6 +7,8 @@
   	<script type="text/javascript" src="js/angular.min.js"></script>
   	<script type="text/javascript" src="js/underscore.js"></script>
   	<script type="text/javascript" src="js/index.js"></script>
+  	<script type="text/javascript" src="js/webintents.min.js"></script>
+  	<script type="text/javascript" src="js/webintents-prefix.js"></script>
   </head>
   <body>
     <div class="page-header">
@@ -22,7 +24,12 @@
             </td>
             <td>
                   {{course.short_description}}
-              </td>
+            </td>
+            <td>
+              <button ng-click="share()" class="btn-primary btn-mini pull-right">
+                Share!
+              </button>
+            </td>
           </tr>
         </table>
       </div>

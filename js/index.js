@@ -55,4 +55,23 @@ function MainCtrl($scope, $http) {
       });
     });
   };
+
+
+  $scope.share = function(){
+    var intent = new Intent(
+        "http://webintents.org/share",
+        "text/uri-list",
+        [ 'http://webintents.org' ]);
+
+    window.navigator.startActivity(intent, 
+      function(data) {
+        console.log('the data is: ', data)
+      }, 
+      function() { 
+        console.log('Intent ERROR!')
+      });
+
+    console.log('After the intent: ', intent);
+  }
+
 }

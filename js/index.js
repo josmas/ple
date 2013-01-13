@@ -74,4 +74,28 @@ function MainCtrl($scope, $http) {
     console.log('After the intent: ', intent);
   }
 
+};
+
+
+function CalendarCtrl($scope, $http) {
+  $scope.authToken = null;
+  $scope.greeting = 'Signing in...';
+  
+  $scope.getAuthToken = function(auth_token) {
+    chrome.experimental.identity.getAuthToken({ 'interactive': true }, function(token) { 
+      $scope.authToken = token;
+      $scope.$digest();
+    
+      $http({
+        method: 'GET', 
+        url: 'https://www.googleapis.com/oauth2/v1/userinfo?alt=json',
+        headers: {'Authorization': 'Bearer ' + $scope.authToken}
+      }).success(function(data, status, headers, config) {
+          $scope.greeting = 'Hello ' + data.name;
+      });
+    });
+    
+  };
+  $scope.getAuthToken();
+
 }

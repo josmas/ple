@@ -20,8 +20,17 @@
     "http://www.google.com/",
     "https://p2pu.org/api/alpha/courses/?format=json",
     "https://www.coursera.org/maestro/api/topic/list",
-    "notifications"
+    "notifications",
+    "experimental",
+    "identity"
   ],
+  "oauth2": {
+    "client_id": "657007886804.apps.googleusercontent.com",
+    "scopes": [
+      "https://www.googleapis.com/auth/calendar.readonly",
+      "https://www.googleapis.com/auth/userinfo.profile"
+    ]
+  },
   "intents": {
     "http://webintents.org/share" : [{
     "title" : "PLE",
